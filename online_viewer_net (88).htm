@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JMB Printing Services</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bucklane+Script&display=swap">
+  <style>
+    body {
+      background-image: url('E:\OJT ezf solar farm/OJT 5.jpg');
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+    header, footer {
+      background-image: url('—Pngtree—background biru keren dan kosong_1738466 (2).png');
+      background-size: cover;
+      text-align: center;
+      padding: 20px;
+    }
+    footer {
+      background-image: url('—Pngtree—background biru keren dan kosong_1738466 (2).png');
+    }
+    .admin-name {
+      font-family: 'Bucklane Script', cursive;
+      font-size: 24px;
+    }
+    .product {
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 10px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .cart {
+      margin-top: 20px;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="Colorful_Printing_and_Digital_Shop_Logo__1_-removebg-preview.png" alt="Logo" width="100"><br><img src="C:\Users\Admin\Pictures/Picture1.png" alt="Logo" width="100"><br>
+    <h1>JMB Printing Services</h1>
+    <p>High quality prints</p>
+    <p>Philippine Standard Time: <span id="pst"></span></p>
+  </header>
+
+  <section>
+    <h2>Admin</h2>
+    <img src="E:\BACGROUND/481255701_648324757779871_3101788441027244398_n.jpg" alt="Admin" width="100">
+    <p class="admin-name">Jorenz Melo Balbuena</p>
+    <img src="signature.png" alt="Signature" width="150">
+  </section>
+
+  <section>
+    <h2>Mission and Vision</h2>
+    <p><strong>Mission:</strong> To deliver high-quality and affordable printing solutions for every Filipino.</p>
+    <p><strong>Vision:</strong> To be a trusted and leading name in the printing industry across the Philippines.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Facebook: <a href="https://web.facebook.com/profile.php?id=61577415907805">Visit our page</a></p>
+    <p>Contact: DITO SIM: 09931109148</p>
+    <p>Email: jmbprintingservices12@gmail.com</p>
+    <p>Location: Hi-way, Balitoc, Calatagan, Batangas, 4215</p>
+  </section>
+
+  <section>
+    <h2>Partners</h2>
+    <p>GCash | BPI</p>
+  </section>
+
+  <section>
+    <h2>Gallery</h2>
+    <img src="gallery1.jpg" width="150">
+    <img src="gallery2.jpg" width="150">
+    <!-- Add more images as needed -->
+  </section>
+
+  <section>
+    <h2>Business Registration</h2>
+    <ul>
+      <li>DTI</li>
+      <li>BIR</li>
+      <li>Barangay Permit</li>
+      <li>Business Permit</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Location Map</h2>
+    <iframe src="https://maps.google.com/maps?q=Balitoc%20Calatagan&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+  </section>
+
+  <section>
+    <h2>Products</h2>
+    <div id="product-list"></div>
+    <div class="cart">
+      <button class="btn" onclick="viewCart()">View Cart</button>
+      <button class="btn" onclick="checkout()">Checkout</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Calendar</h2>
+    <div id="calendar"></div>
+    <button onclick="nextMonth()">Next Month</button>
+  </section>
+
+  <section>
+    <h2>Latest Activities & Announcements</h2>
+    <iframe src="https://web.facebook.com/plugins/page.php?href=https://web.facebook.com/profile.php?id=61577415907805&tabs=timeline&width=500&height=300"></iframe>
+  </section>
+
+  <section>
+    <h2>Holiday List</h2>
+    <p>See: <a href="https://www.officialgazette.gov.ph/nationwide-holidays/2025/">Official Gazette Holiday List</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 JMB Printing Services. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const products = [
+      ['ID RUSH 1', 40], ['ID RUSH 2', 50], ['ID RUSH 3', 55], ['ID RUSH 4', 55],
+      ['ID RUSH 5', 65], ['ID RUSH 6', 65], ['ID RUSH 7', 65], ['ID RUSH 8', 65],
+      ['PHOTO PRINT 1', 70], ['PHOTO PRINT 2', 70], ['PHOTO PRINT 3', 75], ['PHOTO PRINT 4', 85],
+      ['PHOTO PRINT 5', 85], ['PHOTO PRINT 6', 85], ['PHOTO PRINT 7', 90], ['PHOTO PRINT 8', 60],
+      ['PHOTO PRINT 9', 90], ['A4(COLORED)', 7], ['A4(B&W)', 6], ['SHORT(COLORED)', 7],
+      ['SHORT(B&W)', 6], ['LONG(COLORED)', 7], ['LONG(B&W)', 6], ['LAMINATE', 35],
+      ['BOOKBINDING', 100], ['DOCUMENT PRINT (Full Page w/ PIC)', 20], ['DOCUMENT PRINT (Half Page w/ PIC)', 15]
+    ];
+
+    let cart = [];
+
+    function renderProducts() {
+      const list = document.getElementById('product-list');
+      products.forEach(([name, price], index) => {
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `
+          <strong>${name}</strong><br>
+          Price: ₱${price}<br>
+          <button class="btn" onclick="addToCart(${index})">Add to Cart</button>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function addToCart(index) {
+      cart.push(products[index]);
+      alert(products[index][0] + ' added to cart.');
+    }
+
+    function viewCart() {
+      alert(cart.map(([name, price]) => `${name}: ₱${price}`).join('\n'));
+    }
+
+    function checkout() {
+      const total = cart.reduce((sum, item) => sum + item[1], 0);
+      alert('Checkout total: ₱' + total);
+    }
+
+    function updateTime() {
+      const pstDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Manila' });
+      document.getElementById('pst').textContent = pstDate;
+    }
+
+    setInterval(updateTime, 1000);
+    renderProducts();
+
+    // Basic Calendar (simple month display)
+    let currentMonth = new Date().getMonth();
+    function renderCalendar() {
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      document.getElementById('calendar').textContent = months[currentMonth];
+    }
+    function nextMonth() {
+      currentMonth = (currentMonth + 1) % 12;
+      renderCalendar();
+    }
+    renderCalendar();
+  </script>
+</body>
+</html>
